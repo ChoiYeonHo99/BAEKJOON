@@ -1,0 +1,8 @@
+x = input().split(" ")
+king = 1 - int(x[0])
+queen = 1 - int(x[1])
+rook = 2 - int(x[2])
+bishop = 2 - int(x[3])
+knight = 2 - int(x[4])
+pawn = 8 - int(x[5])
+print(king, queen, rook, bishop, knight, pawn)
