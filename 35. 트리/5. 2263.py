@@ -1,28 +1,25 @@
 import sys
+sys.setrecursionlimit(10**6)
 
-def change_preOrder(inOrder: list, postOrder: list):
-    if not inOrder or not postOrder:
-        return []
+def change_preOrder(in1: int, in2: int, post1: int, post2: int):
+    if in1 > in2 or post1 > post2:
+        return
 
-    rootValue = postOrder.pop()
-    rootIndex = inOrder.index(rootValue)
+    rootValue = postOrder[post2]
+    rootIndex = correctionInOrder[rootValue]
 
-    root = [rootValue]
-    postIndex = 0
-    for i in range(len(postOrder)):
-        if postOrder[i] > rootValue:
-            postIndex = i
-            break
-
-    right = change_preOrder(inOrder[rootIndex+1:], postOrder[postIndex:])
-    left = change_preOrder(inOrder[:rootIndex], postOrder[:postIndex])
-
-    return root + left + right
+    print(rootValue, end = " ")
+    correction = rootIndex - in1
+    change_preOrder(in1, rootIndex-1, post1, post1+correction-1)
+    change_preOrder(rootIndex+1, in2, post1+correction, post2-1)
+    return
 
 n = int(sys.stdin.readline().rstrip())
 inOrder = list(map(int, sys.stdin.readline().rstrip().split()))
 postOrder = list(map(int, sys.stdin.readline().rstrip().split()))
 
-preOrder = change_preOrder(inOrder, postOrder)
-for i in range(len(preOrder)):
-    print(preOrder[i], end = " ")
+correctionInOrder = [0] * (n+1)
+for i in range(n):
+    correctionInOrder[inOrder[i]] = i
+
+change_preOrder(0, n-1, 0, n-1)
