@@ -1,0 +1,19 @@
+bool cmp(pair<string, int> a, pair<string, int> b) {
+    if (a.second == b.second) {
+        if (a.first.length() == b.first.length())
+            return a.first < b.first;
+
+        return a.first.length() > b.first.length();
+    }
+
+    return a.second > b.second;
+}
+
+// 처음 위치는 b, a 순서대로 위치하고 있다.
+// return값이 true일 경우 정렬을 실행하여 a, b 순서로 위치한다.
+// return값이 false일 경우 정렬을 실행하지 않아서 b, a 순서로 위치한다.
+
+// 위 코드는 3가지 조건을 담은 정렬문이다. pair<단어, 횟수>
+// 자주 나오는 단어일수록 앞에 배치한다.
+// 해당 단어의 길이가 길수록 앞에 배치한다.
+// 알파벳 사전 순으로 앞에 있는 단어일수록 앞에 배치한다.
