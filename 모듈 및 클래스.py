@@ -5,3 +5,4 @@ import itertools #순열permutations, 조합combinations #list(combinations(temp
 import heapq
 sys.setrecursionlimit(100000)
 INF = float('inf')
+print("Hello, World!", sep = ' ', end = '\n', file = sys.stdout, flush = False)
